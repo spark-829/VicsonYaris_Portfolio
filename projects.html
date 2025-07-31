@@ -1,0 +1,53 @@
+<!-- projects.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Data Analyst Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+    <!-- Navigation bar -->
+    <nav>
+        <div class="logo">Your Name</div>
+        <button class="nav-toggle" id="nav-toggle">&#9776;</button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Me</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button id="darkmode-toggle" class="dark-toggle">🌙</button>
+    </nav>
+
+    <!-- Projects Page Content -->
+    <section class="projects-page">
+        <h1>Projects</h1>
+
+        <!-- Project 1: Power BI Dashboard -->
+        <div class="project-card">
+            <h2>Sales Dashboard (Power BI)</h2>
+            <iframe width="800" height="450" src="https://app.powerbi.com/reportEmbed?reportId=YOUR_REPORT_ID_HERE&autoAuth=true" frameborder="0" allowFullScreen="true"></iframe>
+            <p>Description: A dynamic Power BI dashboard analyzing sales data and KPIs. (Embed code via Power BI service:contentReference[oaicite:1]{index=1}.)</p>
+        </div>
+
+        <!-- Project 2: Looker Studio Dashboard -->
+        <div class="project-card">
+            <h2>Marketing Data Dashboard (Looker Studio)</h2>
+            <iframe width="800" height="450" src="https://lookerstudio.google.com/embed/reporting/YOUR_REPORT_ID_HERE/page/1M" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <p>Description: A Looker Studio (Google Data Studio) report on marketing metrics. (Embed code example adapted from official docs:contentReference[oaicite:2]{index=2}.)</p>
+        </div>
+
+        <!-- Project 3: Python Data Project -->
+        <div class="project-card">
+            <h2>Python Data Analysis</h2>
+            <p>Description: A Python project involving data cleaning, analysis, and visualization. Include code snippets or links to your repository or notebooks as needed.</p>
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
