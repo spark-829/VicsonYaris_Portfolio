@@ -1,16 +1,14 @@
-<!-- projects.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Data Analyst Portfolio</title>
+    <title>Projects | Vicson Yaris</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="body">
-    <!-- Navigation bar -->
     <nav>
-        <div class="logo">Your Name</div>
+        <div class="logo">Vicson Yaris</div>
         <button class="nav-toggle" id="nav-toggle">&#9776;</button>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -22,31 +20,35 @@
         <button id="darkmode-toggle" class="dark-toggle">🌙</button>
     </nav>
 
-    <!-- Projects Page Content -->
-    <section class="projects-page">
-        <h1>Projects</h1>
+    <main class="page-content">
+        <section class="section-card">
+            <h1>Projects</h1>
+            <p>These projects reflect my experience in analytics, automation, embedded systems, and web-based monitoring tools.</p>
+        </section>
 
-        <!-- Project 1: Power BI Dashboard -->
-        <div class="project-card">
-            <h2>Sales Dashboard (Power BI)</h2>
-            <iframe width="800" height="450" src="https://app.powerbi.com/reportEmbed?reportId=YOUR_REPORT_ID_HERE&autoAuth=true" frameborder="0" allowFullScreen="true"></iframe>
-            <p>Description: A dynamic Power BI dashboard analyzing sales data and KPIs. (Embed code via Power BI service:contentReference[oaicite:1]{index=1}.)</p>
-        </div>
+        <section class="section-card">
+            <h2>Solar-Powered Automated Biogas Monitoring and Control System</h2>
+            <p>Capstone project involving an IoT-based automated biogas monitoring system using ESP32 microcontrollers and a Django web application with Firebase Realtime Database.</p>
+            <ul class="bullet-list">
+                <li>Developed embedded software in MicroPython for real-time monitoring.</li>
+                <li>Built a full-stack web application to visualize production data and support better decision-making.</li>
+                <li>Analyzed usage data to improve biogas generation efficiency through data-driven monitoring.</li>
+            </ul>
+        </section>
 
-        <!-- Project 2: Looker Studio Dashboard -->
-        <div class="project-card">
-            <h2>Marketing Data Dashboard (Looker Studio)</h2>
-            <iframe width="800" height="450" src="https://lookerstudio.google.com/embed/reporting/YOUR_REPORT_ID_HERE/page/1M" frameborder="0" style="border:0" allowfullscreen></iframe>
-            <p>Description: A Looker Studio (Google Data Studio) report on marketing metrics. (Embed code example adapted from official docs:contentReference[oaicite:2]{index=2}.)</p>
-        </div>
+        <section class="section-card">
+            <h2>HR Reporting and Dashboard Automation</h2>
+            <p>Created reporting solutions that improved visibility and reduced manual effort using Excel, Power Query, DAX, and Power BI.</p>
+            <div class="dashboard-embed">
+                <iframe src="https://datastudio.google.com/embed/reporting/147ba655-1e61-42bb-8cde-530c081e635e/page/QNFSF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+            </div>
+        </section>
 
-        <!-- Project 3: Python Data Project -->
-        <div class="project-card">
-            <h2>Python Data Analysis</h2>
-            <p>Description: A Python project involving data cleaning, analysis, and visualization. Include code snippets or links to your repository or notebooks as needed.</p>
-        </div>
-
-    </section>
+        <section class="section-card">
+            <h2>Data Visualization Portfolio Dashboard</h2>
+            <p>Developed a portfolio dashboard layout to present analytics work clearly and professionally, aligning with my resume and professional profile.</p>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>

@@ -1,8 +1,7 @@
-// script.js
 // Navigation toggle for mobile
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.querySelector('nav .nav-links');
-if (navToggle) {
+if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('show');
     });
@@ -11,11 +10,11 @@ if (navToggle) {
 // Dark mode toggle
 const darkToggle = document.getElementById('darkmode-toggle');
 if (darkToggle) {
-    // Initialize based on localStorage
     if (localStorage.getItem('light-mode') === 'true') {
         document.body.classList.add('light-mode');
         darkToggle.textContent = '☀';
     }
+
     darkToggle.addEventListener('click', () => {
         document.body.classList.toggle('light-mode');
         if (document.body.classList.contains('light-mode')) {
@@ -28,10 +27,11 @@ if (darkToggle) {
     });
 }
 
-// (Optional) Highlight current page based on URL
-// const current = window.location.pathname.split('/').pop();
-// document.querySelectorAll('nav .nav-links a').forEach(link => {
-//     if (link.getAttribute('href') === current) {
-//         link.classList.add('active');
-//     }
-// });
+// Highlight the current navigation page
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('nav .nav-links a').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage) {
+        link.classList.add('active');
+    }
+});
