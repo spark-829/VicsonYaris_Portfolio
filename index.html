@@ -1,73 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vicson Yaris | Data Analyst Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vicson Yaris · Data Analyst</title>
+  <meta name="description" content="Vicson Yaris — data analyst working in Power BI, DAX, Excel, SQL and Python. Featured: a four-page Power BI analysis of 99K Olist e-commerce orders.">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
 </head>
-<body id="body">
-    <nav>
-        <div class="logo">Vicson Yaris</div>
-        <button class="nav-toggle" id="nav-toggle">&#9776;</button>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About Me</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="skills.html">Skills</a></li>
-            <li><a href="contact.html">Contact</a></li>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Vicson Yaris, home"><span class="brand-mark">VY</span> Vicson Yaris</a>
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#case-study">Case study</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <button id="darkmode-toggle" class="dark-toggle">🌙</button>
-    </nav>
+      </nav>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
 
-    <main class="page-content">
-        <header class="hero">
-            <p class="eyebrow">Computer Engineering Student • Data Analyst Aspirant</p>
-            <h1>Vicson Yaris</h1>
-            <p class="hero-subtitle">I turn raw data into clear dashboards, useful automation, and actionable insights using Excel, Power BI, PostgreSQL, Python, and Power Platform.</p>
-            <div class="hero-contact">
-                <a href="mailto:vicsonyaris29@gmail.com">vicsonyaris29@gmail.com</a>
-                <a href="tel:09957629343">09957629343</a>
-                <a href="https://www.linkedin.com/in/vicson-yaris-67a1b9160" target="_blank" rel="noreferrer">LinkedIn</a>
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero wrap" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Data Analyst · Baguio City, Philippines</p>
+        <h1>I find the few numbers that actually move a business&nbsp;— and build the dashboard that makes them obvious.</h1>
+        <p class="lede">I'm Vicson Yaris, a Computer Engineering graduate and top-of-class Data Analytics Level&nbsp;III certificate holder. I work in Power BI, DAX, Excel, PostgreSQL and Python, and I've automated real reporting workflows in the Power Platform.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#case-study">See the featured dashboard</a>
+          <a class="btn" href="https://www.linkedin.com/in/vicson-yaris-67a1b9160" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Featured project at a glance">
+        <p class="hero-card-label">Featured · Power BI</p>
+        <p class="hero-card-title">Olist Brazilian E-Commerce</p>
+        <p class="hero-card-sub">99,441 orders · 96,096 customers · 2016–2018</p>
+        <div class="hero-big">
+          <span class="hero-big-num">97.1%</span>
+          <span class="hero-big-cap">of customers never place a second order. Retention, not demand, is the growth ceiling.</span>
+        </div>
+        <dl class="hero-stats">
+          <div><dt>Revenue analysed</dt><dd>R$ 13.6M</dd></div>
+          <div><dt>Report pages</dt><dd>4</dd></div>
+          <div><dt>Findings</dt><dd>12</dd></div>
+        </dl>
+        <a class="link hero-card-link" href="VicsonYaris_Portfolio.pdf" target="_blank" rel="noopener">Open the full report (PDF) →</a>
+      </aside>
+    </section>
+
+    <!-- ============ CASE STUDY ============ -->
+    <section class="section case" id="case-study" aria-labelledby="case-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Featured case study</p>
+          <h2 id="case-title">Why a growing marketplace stopped growing</h2>
+          <p class="section-lede">A four-page Power BI report on Olist, Brazil's largest department-store marketplace. Revenue climbed through 2017 and then went sideways from March 2018. I set out to explain why, and to rank what to fix first.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="VicsonYaris_Portfolio.pdf" target="_blank" rel="noopener">Open the full report (PDF)</a>
+          </div>
+        </div>
+
+        <div class="brief">
+          <div><h3>The question</h3><p>Is the plateau a demand problem, a value-per-order problem, or a customer-experience problem? And which fixes are worth doing first?</p></div>
+          <div><h3>The data</h3><p>Olist public dataset (Kaggle): 8 related tables covering orders, items, payments, reviews, customers, sellers, products and geolocation. 99,441 orders from Sep 2016 to Oct 2018.</p></div>
+          <div><h3>The build</h3><p>Power Query to clean and shape the tables, a star-schema model, and DAX measures for cohorts, moving averages, deciles, the revenue bridge and seller segmentation. Four synced pages with shared slicers.</p></div>
+        </div>
+
+        <!-- KPI strip, as on the report's Overview page -->
+        <ul class="kpis" aria-label="Headline KPIs">
+          <li><span class="kpi-label">Revenue</span><span class="kpi-val">R$ 13.6M</span></li>
+          <li><span class="kpi-label">Orders</span><span class="kpi-val">99.4K</span></li>
+          <li><span class="kpi-label">Avg order value</span><span class="kpi-val">R$ 136.7</span></li>
+          <li><span class="kpi-label">Repeat purchase rate</span><span class="kpi-val">2.85%</span></li>
+          <li><span class="kpi-label">Avg review score</span><span class="kpi-val">4.09 <small>/ 5</small></span></li>
+          <li><span class="kpi-label">On-time delivery</span><span class="kpi-val">91.9%</span></li>
+        </ul>
+
+        <!-- Report viewer -->
+        <div class="report">
+          <div class="report-bar">
+            <p class="report-title"><span class="dot" aria-hidden="true"></span>Report pages</p>
+            <div class="tabs" role="tablist" aria-label="Report pages">
+              <button role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true">Overview</button>
+              <button role="tab" id="tab-customers" aria-controls="panel-customers" aria-selected="false" tabindex="-1">Customers</button>
+              <button role="tab" id="tab-delivery" aria-controls="panel-delivery" aria-selected="false" tabindex="-1">Delivery</button>
+              <button role="tab" id="tab-products" aria-controls="panel-products" aria-selected="false" tabindex="-1">Products</button>
             </div>
-            <div class="hero-actions">
-                <a href="about.html" class="btn">View Resume</a>
-                <a href="projects.html" class="btn btn-secondary">See Projects</a>
+          </div>
+
+          <!-- Overview -->
+          <div class="panel" role="tabpanel" id="panel-overview" aria-labelledby="tab-overview">
+            <div class="panel-grid">
+              <figure class="chart-card span-2">
+                <figcaption>
+                  <h4>Monthly revenue and 3-month moving average</h4>
+                  <p>Growth flattened from March 2018. The moving average has been sideways for six months.</p>
+                </figcaption>
+                <div class="chart" id="chart-revenue"></div>
+              </figure>
+              <div class="findings">
+                <p class="findings-label">Priority actions</p>
+                <article><span class="tag tag-critical">Critical</span><h5>Retention is the growth ceiling</h5><p>97.1% of 96,096 customers never place a second order. Repeat buyers bring in just 2.8% of revenue.</p></article>
+                <article><span class="tag tag-critical">Critical</span><h5>Growth is all volume</h5><p>In the 12 months to Aug 2018, revenue rose R$ 7.27M on the year before, and 99% of that came from order count. Average order value moved just 0.9%.</p></article>
+                <article><span class="tag tag-watch">Watch</span><h5>Catalogue is broad, not 80/20</h5><p>The top 8 of 73 categories make only 54% of revenue. No single category can carry a turnaround.</p></article>
+              </div>
             </div>
-        </header>
+            <figure class="shot"><img src="assets/dashboard/overview.png" alt="Power BI Executive Overview page: KPI cards, monthly revenue trend, revenue bridge, category concentration and priority actions" loading="lazy"><figcaption>The original Power BI page · <a href="VicsonYaris_Portfolio.pdf" target="_blank" rel="noopener">full report (PDF)</a></figcaption></figure>
+          </div>
 
-        <section class="section-card">
-            <h2>Professional Summary</h2>
-            <p>Computer Engineering student with Data Analytics Level III certification and hands-on experience in Excel, Power BI, DAX, PostgreSQL, Python, and business process automation. Experienced in building dashboards, optimizing reports, automating workflows, and transforming raw data into actionable insights.</p>
-        </section>
-
-        <section class="section-card">
-            <h2>Featured Highlights</h2>
-            <div class="highlight-grid">
-                <div class="highlight-card">
-                    <h3>Dashboard Development</h3>
-                    <p>Built Power BI dashboards and Looker Studio reports for HR and operational metrics.</p>
-                </div>
-                <div class="highlight-card">
-                    <h3>Workflow Automation</h3>
-                    <p>Automated recruitment and reporting processes with Power Apps and Power Automate.</p>
-                </div>
-                <div class="highlight-card">
-                    <h3>Embedded Systems & Data</h3>
-                    <p>Combined IoT, web development, and analytics in a capstone biogas monitoring system.</p>
-                </div>
+          <!-- Customers -->
+          <div class="panel" role="tabpanel" id="panel-customers" aria-labelledby="tab-customers" hidden>
+            <div class="panel-grid">
+              <figure class="chart-card">
+                <figcaption>
+                  <h4>What retention is worth</h4>
+                  <p>Lifetime value per customer. A repeat buyer is worth 1.9× a one-time buyer.</p>
+                </figcaption>
+                <div class="chart" id="chart-ltv"></div>
+              </figure>
+              <figure class="chart-card">
+                <figcaption>
+                  <h4>Where customer value sits</h4>
+                  <p>Revenue by customer decile, highest-spending first. The top 10% hold 41%.</p>
+                </figcaption>
+                <div class="chart" id="chart-deciles"></div>
+              </figure>
+              <div class="findings">
+                <p class="findings-label">Key findings</p>
+                <article><span class="tag tag-critical">Critical</span><h5>One purchase, then gone</h5><p>No monthly cohort has topped 0.8% retention in its second month. Across all cohorts, month-1 retention averages 0.48%.</p></article>
+                <article><span class="tag tag-critical">Critical</span><h5>Value sits in big baskets, not loyalty</h5><p>The top 10% of customers hold 41% of revenue, but it comes from large one-off orders. With 97% buying once, there's no loyal VIP base yet.</p></article>
+                <article><span class="tag tag-watch">Watch</span><h5>Plan against the median</h5><p>The median order is R$ 85 against a mean of R$ 137. A thin tail of large orders pulls the average up 60%.</p></article>
+              </div>
             </div>
-        </section>
+            <figure class="shot"><img src="assets/dashboard/customers.png" alt="Power BI Customer and Cohort Analysis page: cohort retention matrix, revenue by customer decile, order value distribution and lifetime value comparison" loading="lazy"><figcaption>The original Power BI page · <a href="VicsonYaris_Portfolio.pdf" target="_blank" rel="noopener">full report (PDF)</a></figcaption></figure>
+          </div>
 
-        <section class="section-card">
-            <h2>Certificates</h2>
-            <div class="certificate-card">
-                <h3>Data Analytics Level III</h3>
-                <p>Top of the Class • Northridge Institute of Business and Technology</p>
+          <!-- Delivery -->
+          <div class="panel" role="tabpanel" id="panel-delivery" aria-labelledby="tab-delivery" hidden>
+            <div class="panel-grid">
+              <figure class="chart-card">
+                <figcaption>
+                  <h4>Review score by delivery outcome</h4>
+                  <p>Average stars by how the order actually landed against the promised date.</p>
+                </figcaption>
+                <div class="chart" id="chart-reviews"></div>
+              </figure>
+              <figure class="chart-card">
+                <figcaption>
+                  <h4>Where the days actually go</h4>
+                  <p>Average days from purchase to delivery, split into seller handling and carrier transit.</p>
+                </figcaption>
+                <div class="chart" id="chart-days"></div>
+              </figure>
+              <div class="findings">
+                <p class="findings-label">Key findings</p>
+                <article><span class="tag tag-critical">Critical</span><h5>A small late tail sets the score</h5><p>Orders 8+ days late average 1.73 stars against 4.30 for early ones, a swing of 2.6 stars.</p></article>
+                <article><span class="tag tag-critical">Critical</span><h5>Two states are structurally behind</h5><p>Alagoas (76.1%) and Maranhão (80.3%) deliver on time far less often than the 91.9% national rate.</p></article>
+                <article><span class="tag tag-watch">Watch</span><h5>Sellers aren't the bottleneck</h5><p>Seller handling is about 3 days in every region. Carrier transit ranges from 7.5 days (Southeast) to 19.2 (North).</p></article>
+              </div>
             </div>
-        </section>
-    </main>
+            <figure class="shot"><img src="assets/dashboard/delivery.png" alt="Power BI Delivery Performance page: delay versus review score, handling and transit days by region, review score by outcome and on-time rate by state" loading="lazy"><figcaption>The original Power BI page · <a href="VicsonYaris_Portfolio.pdf" target="_blank" rel="noopener">full report (PDF)</a></figcaption></figure>
+          </div>
 
-    <script src="script.js"></script>
+          <!-- Products -->
+          <div class="panel" role="tabpanel" id="panel-products" aria-labelledby="tab-products" hidden>
+            <div class="panel-grid">
+              <figure class="chart-card">
+                <figcaption>
+                  <h4>Freight as a share of order value</h4>
+                  <p>By basket size in R$. Around 20% is roughly break-even, and small baskets don't pay for their own freight.</p>
+                </figcaption>
+                <div class="chart" id="chart-freight"></div>
+              </figure>
+              <figure class="chart-card">
+                <figcaption>
+                  <h4>Repeat propensity by category</h4>
+                  <p>Share of customers who order again. The top 8 categories by revenue are shown, against the 2.85% site average.</p>
+                </figcaption>
+                <div class="chart" id="chart-repeat"></div>
+              </figure>
+              <div class="findings">
+                <p class="findings-label">Key findings</p>
+                <article><span class="tag tag-critical">Critical</span><h5>525 sellers are failing at scale</h5><p>These sellers have above-median volume but average under 4 stars, and they carry R$ 3.94M, or 29% of all revenue.</p></article>
+                <article><span class="tag tag-critical">Critical</span><h5>Small baskets lose money on freight</h5><p>Freight is 78% of order value under R$ 25 and 42% at R$ 25–50, against a 20% break-even.</p></article>
+                <article><span class="tag tag-watch">Watch</span><h5>Retention lives in homeware</h5><p>bed_bath_table (4.32%) and furniture_decor (4.20%) repeat well above the 2.85% site average.</p></article>
+              </div>
+            </div>
+            <figure class="shot"><img src="assets/dashboard/products.png" alt="Power BI Product and Seller Performance page: seller quadrant scatter, category scorecard, freight ratio by basket and repeat rate by category" loading="lazy"><figcaption>The original Power BI page · <a href="VicsonYaris_Portfolio.pdf" target="_blank" rel="noopener">full report (PDF)</a></figcaption></figure>
+          </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="recs">
+          <h3>What I'd tell the business</h3>
+          <ol>
+            <li><strong>Fund a second-order program before more acquisition.</strong> A repeat customer is worth R$ 260 against R$ 138. Moving retention from 2.85% toward the homeware categories' 4%+ is the biggest lever available.</li>
+            <li><strong>Fix the late tail, not the average.</strong> Delivery is 91.9% on time, but the late orders are the ones that sink reviews. Start with carrier transit into the North and Northeast, and with Alagoas and Maranhão specifically.</li>
+            <li><strong>Put a minimum basket or a freight threshold under R$ 50.</strong> Below that line, freight eats 42–78% of the order.</li>
+            <li><strong>Run a seller-quality program for the 525 "fix" sellers.</strong> They carry 29% of revenue at under 4 stars, so improving them protects revenue without having to find new demand.</li>
+          </ol>
+        </div>
+
+        <div class="method">
+          <h3>Techniques on display</h3>
+          <ul class="chips">
+            <li>Star-schema data model</li><li>Power Query ETL</li><li>DAX time intelligence</li><li>3-month moving average</li>
+            <li>Price × volume × mix bridge</li><li>Monthly cohort retention matrix</li><li>Customer decile (Pareto) analysis</li>
+            <li>Median vs. mean distribution</li><li>Seller quadrant segmentation</li><li>Delay-bucket review analysis</li><li>Synced slicers &amp; page navigation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OTHER PROJECTS ============ -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">More work</p>
+          <h2 id="projects-title">Other projects</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project">
+            <p class="project-meta">Pacificall Inc. · 2025</p>
+            <h3>HR reporting &amp; dashboards</h3>
+            <p>I rebuilt HR reporting workbooks with advanced Excel formulas, PivotTables and Power Query, then moved the key metrics into Power BI dashboards built on DAX measures and calculated columns, with a Looker Studio view for sharing.</p>
+            <ul class="chips small"><li>Excel</li><li>Power Query</li><li>Power BI</li><li>DAX</li><li>Looker Studio</li></ul>
+            <a class="link" href="https://lookerstudio.google.com/reporting/147ba655-1e61-42bb-8cde-530c081e635e/page/QNFSF" target="_blank" rel="noopener">Open the Looker Studio report →</a>
+          </article>
+          <article class="project">
+            <p class="project-meta">Pacificall Inc. · 2025</p>
+            <h3>Recruitment workflow automation</h3>
+            <p>I replaced a manual applicant-tracking process with a Power Apps front end and Power Automate flows on SharePoint lists. This cut manual processing time by about <strong>40%</strong>.</p>
+            <ul class="chips small"><li>Power Apps</li><li>Power Automate</li><li>SharePoint</li></ul>
+          </article>
+          <article class="project">
+            <p class="project-meta">Capstone · University of Baguio</p>
+            <h3>Solar-powered biogas monitoring &amp; control</h3>
+            <p>This IoT system used ESP32 sensors running MicroPython to stream readings to Firebase Realtime Database, and a Django web app visualised production data. I analysed the usage data to improve biogas generation efficiency.</p>
+            <ul class="chips small"><li>ESP32</li><li>MicroPython</li><li>Django</li><li>Firebase</li><li>Python</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience" aria-labelledby="exp-title">
+      <div class="wrap two-col">
+        <div>
+          <div class="section-head">
+            <p class="eyebrow">Background</p>
+            <h2 id="exp-title">Experience</h2>
+          </div>
+          <ol class="timeline">
+            <li>
+              <p class="tl-when">2024 – Present</p>
+              <h3>IEM Engineer <span>· Nine Degrees North Corp.</span></h3>
+              <ul>
+                <li>I diagnose equipment failures through systematic testing and root-cause analysis.</li>
+                <li>I monitor equipment performance and document maintenance to support planning and continuous improvement.</li>
+                <li>I work with technical teams to improve maintenance efficiency and minimise downtime.</li>
+              </ul>
+            </li>
+            <li>
+              <p class="tl-when">2025</p>
+              <h3>Data Analyst Intern <span>· Pacificall Incorporated Philippines</span></h3>
+              <ul>
+                <li>I built and enhanced HR reporting workbooks with advanced Excel formulas, PivotTables and Power Query.</li>
+                <li>I developed Power BI dashboards with DAX measures and calculated columns.</li>
+                <li>I automated recruitment workflows in Power Apps and Power Automate, cutting manual processing time by about 40%.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <div class="section-head">
+            <p class="eyebrow">Credentials</p>
+            <h2>Education &amp; certification</h2>
+          </div>
+          <div class="cred">
+            <p class="cred-badge">Top of the class</p>
+            <h3>Data Analytics Level III</h3>
+            <p>Northridge Institute of Business and Technology</p>
+          </div>
+          <div class="cred">
+            <h3>BS Computer Engineering</h3>
+            <p>University of Baguio · 2020 – 2026</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Toolkit</p>
+          <h2 id="skills-title">Skills</h2>
+        </div>
+        <div class="skill-groups">
+          <div class="skill-group"><h3>Analysis &amp; BI</h3><ul class="chips"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Excel (advanced)</li><li>PivotTables</li><li>Looker Studio</li></ul></div>
+          <div class="skill-group"><h3>Data &amp; code</h3><ul class="chips"><li>PostgreSQL / SQL</li><li>Python</li><li>Django</li><li>Firebase Realtime DB</li><li>C++</li><li>Java</li><li>PHP</li><li>MicroPython</li></ul></div>
+          <div class="skill-group"><h3>Automation</h3><ul class="chips"><li>Power Apps</li><li>Power Automate</li><li>SharePoint</li></ul></div>
+          <div class="skill-group"><h3>How I work</h3><ul class="chips"><li>Data cleaning &amp; validation</li><li>Dashboard storytelling</li><li>Root-cause analysis</li><li>Process improvement</li><li>Documentation</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="contact-card">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title">Open to data analyst roles</h2>
+            <p>I'm looking for entry-level data analyst and BI roles, and I'm open to analytics and automation collaborations. The quickest way to reach me is email.</p>
+          </div>
+          <ul class="contact-list">
+            <li><span>Email</span><a href="mailto:vicsonyaris29@gmail.com">vicsonyaris29@gmail.com</a></li>
+            <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/vicson-yaris-67a1b9160" target="_blank" rel="noopener">vicson-yaris-67a1b9160</a></li>
+            <li><span>GitHub</span><a href="https://github.com/spark-829" target="_blank" rel="noopener">spark-829</a></li>
+            <li><span>Location</span>Baguio City, Philippines</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>© <span id="year">2026</span> Vicson Yaris. Case study data: <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank" rel="noopener">Olist public dataset (Kaggle)</a>. The charts on this page were rebuilt from the Power BI report.</p>
+    </div>
+  </footer>
+
+  <div class="tooltip" id="tooltip" role="status" aria-live="polite" hidden></div>
+  <script src="script.js"></script>
 </body>
 </html>
