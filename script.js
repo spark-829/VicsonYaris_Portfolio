@@ -42,6 +42,26 @@ const DATA = {
   ].map(([label, value]) => ({ label, value, cls: value > 2.85 ? 'm-s1' : 'm-mute' }))
 };
 
+/* Excel case study: figures from the FMCG workbook (synthetic data), checked against the source CSVs */
+const XL = {
+  months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  net2024: [19.55, 19.31, 21.12, 26.22, 23.37, 23.63, 25.12, 23.03, 21.44, 27.17, 27.62, 44.83],
+  net2025: [24.32, 21.74, 32.38, 29.23, 26.99, 23.24, 28.37, 27.21, 24.44, 31.23, 33.59, 42.01],
+  attain: [
+    ['SM-01', 'Ramon Dela Cruz', 101.6], ['SM-02', 'Grace Bautista', 82.4], ['SM-03', 'Joel Agbayani', 99.8],
+    ['SM-04', 'Kristine Ramos', 111.9], ['SM-05', 'Mark Villanueva', 83.3], ['SM-06', 'Liza Fernandez', 96.4],
+    ['SM-07', 'Paolo Mendoza', 85.2], ['SM-08', 'Jenny Castillo', 106.7], ['SM-09', 'Arnel Tumaliuan', 76.6],
+    ['SM-10', 'Rhea Santos', 101.2], ['SM-11', 'Carlo Manalo', 91.2], ['SM-12', 'Diane Cruz', 111.2],
+    ['SM-13', 'Bryan Lim', 107.1], ['SM-14', 'Angela Reyes', 72.5]
+  ].sort((a, b) => b[2] - a[2])
+   .map(([id, name, value]) => ({ id, label: name, value, cls: value < 90 ? 'm-bad' : 'm-s1' })),
+  // [channel, outlets, 2025 net sales ₱M]; 260 outlets, ₱344.8M in total
+  channels: [
+    ['Wholesaler', 41, 194.6], ['Supermarket', 27, 90.8], ['Food Service', 30, 18.6],
+    ['Sari-sari Store', 111, 15.0], ['Convenience', 24, 15.0], ['Drugstore', 27, 10.8]
+  ].map(([label, outlets, net]) => ({ label, outlets, net, a: outlets / 260 * 100, b: net / 344.8 * 100 }))
+};
+
 /* =========================================================
    Tiny SVG chart kit
    ========================================================= */
@@ -99,20 +119,24 @@ function hbar(host, rows, { fmt, max, ref, labelW = 90, tipFmt } = {}) {
   const m = max || niceMax(Math.max(...rows.map(r => r.value)));
   const sx = v => labelW + (v / m) * plotW;
   el('line', { x1: labelW, x2: labelW, y1: top, y2: top + rows.length * band, class: 'base-line' }, svg);
-  rows.forEach((r, i) => {
-    const y = top + i * band, bh = Math.min(20, band - 8), by = y + (band - bh) / 2;
-    text(svg, labelW - 8, y + band / 2 + 4, r.label, 'lbl-2', 'end');
-    const bar = el('path', { d: barPath(labelW, by, Math.max(sx(r.value) - labelW, 1), bh, 'right'), class: r.cls }, svg);
-    text(svg, sx(r.value) + 6, y + band / 2 + 4, fmt(r.value), 'lbl');
-    const hit = el('rect', { x: 0, y, width: w, height: band, class: 'hit' }, svg);
-    hit.addEventListener('pointermove', e => { bar.classList.add('bar-hover'); showTip(e, tipFmt ? tipFmt(r) : `<b>${r.label}</b><br>${fmt(r.value)}`); });
-    hit.addEventListener('pointerleave', () => { bar.classList.remove('bar-hover'); hideTip(); });
-  });
   if (ref) {
     const x = sx(ref.value), y2 = top + rows.length * band;
     el('line', { x1: x, x2: x, y1: top, y2, class: 'ref-line' }, svg);
     text(svg, x, y2 + 15, ref.label, 'tick', 'middle');
   }
+  rows.forEach((r, i) => {
+    const y = top + i * band, bh = Math.min(20, band - 8), by = y + (band - bh) / 2;
+    text(svg, labelW - 8, y + band / 2 + 4, r.label, 'lbl-2', 'end');
+    const bar = el('path', { d: barPath(labelW, by, Math.max(sx(r.value) - labelW, 1), bh, 'right'), class: r.cls }, svg);
+    const v = text(svg, sx(r.value) + 6, y + band / 2 + 4, fmt(r.value), 'lbl');
+    if (ref) {   // a surface patch behind the label so the reference line stops at the text
+      const bb = v.getBBox();
+      svg.insertBefore(el('rect', { x: bb.x - 2, y: bb.y, width: bb.width + 4, height: bb.height, fill: 'var(--surface)' }), v);
+    }
+    const hit = el('rect', { x: 0, y, width: w, height: band, class: 'hit' }, svg);
+    hit.addEventListener('pointermove', e => { bar.classList.add('bar-hover'); showTip(e, tipFmt ? tipFmt(r) : `<b>${r.label}</b><br>${fmt(r.value)}`); });
+    hit.addEventListener('pointerleave', () => { bar.classList.remove('bar-hover'); hideTip(); });
+  });
 }
 
 /* Vertical columns */
@@ -230,6 +254,80 @@ function revenueLine(host, series) {
     '<div class="legend"><span><i class="sw-line m-s1-bg"></i>Monthly revenue</span><span><i class="sw-line m-s2-bg"></i>3-month moving average</span></div>');
 }
 
+/* Line: two years on one axis, crosshair tooltip */
+function yearLines(host, labels, a, b, names) {
+  const { svg, w, h } = svgFor(host, 270);
+  const L = 50, R = 30, T = 12, B = 28;
+  const pw = w - L - R, ph = h - T - B;
+  const m = niceMax(Math.max(...a, ...b));
+  const sx = i => L + (i / (labels.length - 1)) * pw;
+  const sy = v => T + ph - (v / m) * ph;
+  const money = v => '₱' + v.toFixed(1) + 'M';
+  for (let k = 0; k <= 5; k++) {
+    const v = (m / 5) * k, y = sy(v);
+    el('line', { x1: L, x2: w - R, y1: y, y2: y, class: k ? 'grid-line' : 'base-line' }, svg);
+    text(svg, L - 6, y + 4, '₱' + v + 'M', 'tick', 'end');
+  }
+  labels.forEach((lb, i) => text(svg, sx(i), h - 8, lb, 'tick', 'middle'));
+  const line = vals => 'M' + vals.map((v, i) => `${sx(i)},${sy(v)}`).join('L');
+  el('path', { d: line(a), class: 'ln-s2' }, svg);
+  el('path', { d: line(b), class: 'ln-s1' }, svg);
+  const last = labels.length - 1;
+  // end labels, pushed apart when the two lines finish close together
+  let ya = sy(a[last]) + 4, yb = sy(b[last]) + 4;
+  if (Math.abs(ya - yb) < 14) { const mid = (ya + yb) / 2, up = ya < yb ? -7 : 7; ya = mid + up; yb = mid - up; }
+  text(svg, sx(last) + 6, yb, names[1], 'lbl-2');
+  text(svg, sx(last) + 6, ya, names[0], 'lbl-2');
+
+  const cross = el('line', { y1: T, y2: T + ph, class: 'crosshair', visibility: 'hidden' }, svg);
+  const d1 = el('circle', { r: 4.5, class: 'm-s2 hover-dot', visibility: 'hidden' }, svg);
+  const d2 = el('circle', { r: 4.5, class: 'm-s1 hover-dot', visibility: 'hidden' }, svg);
+  const hit = el('rect', { x: L, y: T, width: pw, height: ph, class: 'hit' }, svg);
+  hit.addEventListener('pointermove', e => {
+    const box = svg.getBoundingClientRect();
+    const x = (e.clientX - box.left) * (w / box.width);
+    const i = Math.max(0, Math.min(last, Math.round(((x - L) / pw) * last)));
+    cross.setAttribute('x1', sx(i)); cross.setAttribute('x2', sx(i));
+    d1.setAttribute('cx', sx(i)); d1.setAttribute('cy', sy(a[i]));
+    d2.setAttribute('cx', sx(i)); d2.setAttribute('cy', sy(b[i]));
+    [cross, d1, d2].forEach(n => n.setAttribute('visibility', 'visible'));
+    const chg = (b[i] / a[i] - 1) * 100;
+    showTip(e, `<b>${labels[i]}</b><br>${names[1]}: ${money(b[i])}<br>${names[0]}: ${money(a[i])}<br>Change: ${chg >= 0 ? '+' : ''}${chg.toFixed(1)}%`);
+  });
+  hit.addEventListener('pointerleave', () => { [cross, d1, d2].forEach(n => n.setAttribute('visibility', 'hidden')); hideTip(); });
+  host.insertAdjacentHTML('beforeend',
+    `<div class="legend"><span><i class="sw-line m-s1-bg"></i>${names[1]}</span><span><i class="sw-line m-s2-bg"></i>${names[0]}</span></div>`);
+}
+
+/* Paired horizontal bars: two shares per row, one axis (0–100%) */
+function pairBars(host, rows, names, tipFmt) {
+  const band = 44, top = 4, bottom = 22;
+  const { svg, w } = svgFor(host, top + rows.length * band + bottom);
+  const labelW = 112, valW = 48, plotW = w - labelW - valW;
+  const m = Math.ceil(Math.max(...rows.map(r => Math.max(r.a, r.b))) / 20) * 20;
+  const sx = v => (v / m) * plotW;
+  for (let k = 0; k <= m / 20; k++) {
+    const x = labelW + sx(20 * k);
+    el('line', { x1: x, x2: x, y1: top, y2: top + rows.length * band, class: k ? 'grid-line' : 'base-line' }, svg);
+    text(svg, x, top + rows.length * band + 15, 20 * k + '%', 'tick', 'middle');
+  }
+  rows.forEach((r, i) => {
+    const y = top + i * band, bh = 13;
+    text(svg, labelW - 8, y + band / 2 + 4, r.label, 'lbl-2', 'end');
+    const g = el('g', {}, svg);
+    // net sales (series 1) on top, outlets (series 2) below, 2px gap between them
+    el('path', { d: barPath(labelW, y + band / 2 - bh - 1, Math.max(sx(r.b), 1), bh, 'right'), class: 'm-s1' }, g);
+    el('path', { d: barPath(labelW, y + band / 2 + 1, Math.max(sx(r.a), 1), bh, 'right'), class: 'm-s2' }, g);
+    text(svg, labelW + sx(r.b) + 6, y + band / 2 - 3, r.b.toFixed(0) + '%', 'lbl');
+    text(svg, labelW + sx(r.a) + 6, y + band / 2 + 11, r.a.toFixed(0) + '%', 'lbl-2');
+    const hit = el('rect', { x: 0, y, width: w, height: band, class: 'hit' }, svg);
+    hit.addEventListener('pointermove', e => { g.classList.add('bar-hover'); showTip(e, tipFmt(r)); });
+    hit.addEventListener('pointerleave', () => { g.classList.remove('bar-hover'); hideTip(); });
+  });
+  host.insertAdjacentHTML('beforeend',
+    `<div class="legend"><span><i class="m-s1-bg"></i>${names[1]}</span><span><i class="m-s2-bg"></i>${names[0]}</span></div>`);
+}
+
 /* =========================================================
    Render
    ========================================================= */
@@ -254,32 +352,43 @@ const CHARTS = {
     hbar(document.getElementById('chart-repeat'), DATA.repeat, {
       fmt: v => v.toFixed(2) + '%', labelW: 150, max: 5, ref: { value: 2.85, label: '2.85% site avg' }
     });
-  }
+  },
+  xdash: () => yearLines(document.getElementById('chart-xmonthly'), XL.months, XL.net2024, XL.net2025, ['2024', '2025']),
+  xteam: () => hbar(document.getElementById('chart-xattain'), XL.attain, {
+    fmt: v => v.toFixed(1) + '%', labelW: 118, max: 120, ref: { value: 100, label: '100% of target' },
+    tipFmt: r => `<b>${r.label}</b> (${r.id})<br>${r.value.toFixed(1)}% of 2025 target`
+  }),
+  xmix: () => pairBars(document.getElementById('chart-xchannel'), XL.channels, ['Share of outlets', 'Share of 2025 net sales'],
+    r => `<b>${r.label}</b><br>${r.outlets} outlets · ${r.a.toFixed(1)}% of 260<br>₱${r.net.toFixed(1)}M · ${r.b.toFixed(1)}% of net sales`),
+  xauto: () => {}
 };
 
-let active = 'overview';
-function renderActive() { CHARTS[active](); }
+/* Tabs (WAI-ARIA pattern with arrow-key support), one independent set per tablist */
+const activeTabs = [];
+function renderActive() { activeTabs.forEach(k => CHARTS[k] && CHARTS[k]()); }
 
-/* Tabs (WAI-ARIA pattern with arrow-key support) */
-const tabs = [...document.querySelectorAll('[role="tab"]')];
-function selectTab(tab, focus) {
-  tabs.forEach(t => {
-    const on = t === tab;
-    t.setAttribute('aria-selected', on);
-    t.tabIndex = on ? 0 : -1;
-    document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+document.querySelectorAll('[role="tablist"]').forEach((list, slot) => {
+  const tabs = [...list.querySelectorAll('[role="tab"]')];
+  function selectTab(tab, focus) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+    activeTabs[slot] = tab.id.replace('tab-', '');
+    hideTip();
+    CHARTS[activeTabs[slot]]();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); selectTab(tabs[(i + d + tabs.length) % tabs.length], true); }
+    });
   });
-  if (focus) tab.focus();
-  active = tab.id.replace('tab-', '');
-  hideTip();
-  renderActive();
-}
-tabs.forEach((t, i) => {
-  t.addEventListener('click', () => selectTab(t));
-  t.addEventListener('keydown', e => {
-    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-    if (d) { e.preventDefault(); selectTab(tabs[(i + d + tabs.length) % tabs.length], true); }
-  });
+  activeTabs[slot] = (tabs.find(t => t.getAttribute('aria-selected') === 'true') || tabs[0]).id.replace('tab-', '');
 });
 
 let rt;

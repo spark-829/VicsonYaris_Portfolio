@@ -12,8 +12,18 @@ The featured case study is a four-page Power BI report on the [Olist Brazilian E
 
 When the report changes, export the PDF again and regenerate the four PNGs. Any slot whose image is missing stays hidden.
 
+## The Excel case study
+
+A sales and distribution workbook for a fictional FMCG distributor in North Luzon, built in Excel with formulas, PivotTables, slicers and VBA. The data is synthetic (generated with a Python script), and the site says so.
+
+- `downloads/VicsonYaris_FMCG_Sales_Excel.xlsm`: the workbook visitors can download
+- `assets/excel/*.webp`: screenshots of the Dashboard, Analysis, Scorecard, Rep Report and Pivots sheets, exported from Excel
+- The chart data in `script.js` (`XL`) and the figures in the Excel section of `index.html` come from the workbook. When the workbook changes, update both.
+
+The workbook's source (generator, build script, VBA modules) lives outside this repo, in the Excel project folder.
+
 ## Files
 
 - `index.html`: all page content
 - `style.css`: layout and the light and dark themes
-- `script.js`: chart data and rendering, report tabs, theme toggle, mobile menu
+- `script.js`: chart data and rendering for both case studies, report tabs, theme toggle, mobile menu

@@ -19,6 +19,8 @@
   --watch: #b87a00;
   --watch-bg: #fdf1d6;
   --critical-bg: #fbe4e3;
+  --good: #006300;
+  --good-bg: #e2f2e2;
   --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.05);
   --radius: 14px;
   --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -45,6 +47,8 @@
     --watch: #fab219;
     --watch-bg: #2e2510;
     --critical-bg: #321a1a;
+    --good: #0ca30c;
+    --good-bg: #13261a;
     --shadow: 0 1px 2px rgba(0,0,0,.3);
   }
 }
@@ -68,6 +72,8 @@
   --watch: #fab219;
   --watch-bg: #2e2510;
   --critical-bg: #321a1a;
+  --good: #0ca30c;
+  --good-bg: #13261a;
   --shadow: 0 1px 2px rgba(0,0,0,.3);
 }
 
@@ -221,6 +227,7 @@ p { margin: 0; }
 .ref-line { stroke: var(--ink-2); stroke-width: 1; }
 .tick { fill: var(--muted); font: 11px var(--font); font-variant-numeric: tabular-nums; }
 .lbl { fill: var(--ink); font: 600 11.5px var(--font); font-variant-numeric: tabular-nums; }
+.lbl, .lbl-2 { paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
 .lbl-2 { fill: var(--ink-2); font: 11.5px var(--font); }
 .m-s1 { fill: var(--s1); }
 .m-s2 { fill: var(--s2); }
@@ -257,9 +264,12 @@ p { margin: 0; }
 .tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 .tag-critical { color: var(--critical); background: var(--critical-bg); }
 .tag-watch { color: var(--watch); background: var(--watch-bg); }
+.tag-good { color: var(--good); background: var(--good-bg); }
 
+.shot + .shot { margin-top: 16px; }
 .shot { margin: 20px 0 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-.shot img { width: 100%; }
+.shot img { width: 100%; height: auto; }
+.shot > a { display: block; cursor: zoom-in; }
 .shot figcaption { padding: 10px 14px; font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); }
 
 .recs, .method { margin-top: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(20px, 3vw, 28px); }
@@ -332,3 +342,14 @@ p { margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 .hero-card-link { display: inline-block; margin-top: 18px; }
+
+/* ---------- Excel case study ---------- */
+.note { margin-top: 16px; font-size: 14px; color: var(--ink-2); max-width: 75ch; padding: 12px 14px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0; }
+.method .note { margin-top: 16px; background: var(--surface-2); }
+.macros { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.macros li { border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.macros h4 { font-size: 15px; font-weight: 650; }
+.macros p { margin-top: 6px; font-size: 13.5px; color: var(--ink-2); }
+.chart-card .legend .sw-bar { width: 10px; height: 10px; border-radius: 3px; }
+@media (max-width: 1000px) { .macros { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .macros { grid-template-columns: 1fr; } }

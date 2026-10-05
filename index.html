@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vicson Yaris · Data Analyst</title>
-  <meta name="description" content="Vicson Yaris — data analyst working in Power BI, DAX, Excel, SQL and Python. Featured: a four-page Power BI analysis of 99K Olist e-commerce orders.">
+  <meta name="description" content="Vicson Yaris — data analyst working in Power BI, DAX, Excel, SQL and Python. Featured: a four-page Power BI analysis of 99K Olist e-commerce orders, and an Excel sales and distribution workbook with PivotTables and VBA.">
   <link rel="stylesheet" href="style.css">
   <script>
     try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
@@ -18,7 +18,8 @@
       <a class="brand" href="#top" aria-label="Vicson Yaris, home"><span class="brand-mark">VY</span> Vicson Yaris</a>
       <nav aria-label="Primary">
         <ul class="nav-links" id="nav-links">
-          <li><a href="#case-study">Case study</a></li>
+          <li><a href="#case-study">Power BI</a></li>
+          <li><a href="#excel">Excel</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#skills">Skills</a></li>
@@ -45,8 +46,8 @@
         <p class="lede">I'm Vicson Yaris, a Computer Engineering graduate and top-of-class Data Analytics Level&nbsp;III certificate holder. I work in Power BI, DAX, Excel, PostgreSQL and Python, and I've automated real reporting workflows in the Power Platform.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#case-study">See the featured dashboard</a>
+          <a class="btn" href="#excel">See the Excel project</a>
           <a class="btn" href="https://www.linkedin.com/in/vicson-yaris-67a1b9160" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="#contact">Get in touch</a>
         </div>
       </div>
 
@@ -231,6 +232,142 @@
       </div>
     </section>
 
+    <!-- ============ EXCEL CASE STUDY ============ -->
+    <section class="section" id="excel" aria-labelledby="excel-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Excel case study</p>
+          <h2 id="excel-title">Where a distributor's sales come from, and which reps need help</h2>
+          <p class="section-lede">A sales and distribution workbook for a fictional FMCG distributor in Baguio that serves CAR, Regions I–III and NCR. It's built entirely in Excel: formulas, PivotTables, slicers and VBA. Pick a year, region, channel or category, and every KPI, chart and top-5 list updates.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="downloads/VicsonYaris_FMCG_Sales_Excel.xlsm" download>Download the workbook (.xlsm)</a>
+          </div>
+          <p class="note">The data is <strong>synthetic</strong>. No real Philippine FMCG transaction data is public, so I generated 30,021 order lines with a Python script. The regions, provinces, cities and 2024–2025 holidays are real. The brands, outlets and people are made up.</p>
+        </div>
+
+        <div class="brief">
+          <div><h3>The question</h3><p>Where do this distributor's sales come from? Which products and outlets matter most, how does demand move through the year, and which salesmen are hitting target?</p></div>
+          <div><h3>The data</h3><p>30,021 order lines from Jan 2024 to Dec 2025, plus 260 outlets in 6 channels, 32 SKUs in 6 categories, 14 salesmen and their monthly targets.</p></div>
+          <div><h3>The build</h3><p>SUMIFS over dynamic named ranges, INDEX/MATCH lookups, an approximate-match commission table, PivotTables on one shared cache with slicers, and VBA for refreshes, PDF exports and cleaning a messy monthly import.</p></div>
+        </div>
+
+        <ul class="kpis" aria-label="Headline KPIs, 2025">
+          <li><span class="kpi-label">Net sales 2025</span><span class="kpi-val">₱344.8M</span></li>
+          <li><span class="kpi-label">Growth vs 2024</span><span class="kpi-val">+14.0%</span></li>
+          <li><span class="kpi-label">Gross margin</span><span class="kpi-val">15.3%</span></li>
+          <li><span class="kpi-label">Return rate</span><span class="kpi-val">1.3%</span></li>
+          <li><span class="kpi-label">Active outlets</span><span class="kpi-val">251 <small>/ 260</small></span></li>
+          <li><span class="kpi-label">Team vs target</span><span class="kpi-val">94.8%</span></li>
+        </ul>
+
+        <div class="report">
+          <div class="report-bar">
+            <p class="report-title"><span class="dot" aria-hidden="true"></span>Workbook sheets</p>
+            <div class="tabs" role="tablist" aria-label="Workbook sheets">
+              <button role="tab" id="tab-xdash" aria-controls="panel-xdash" aria-selected="true">Dashboard</button>
+              <button role="tab" id="tab-xteam" aria-controls="panel-xteam" aria-selected="false" tabindex="-1">Sales team</button>
+              <button role="tab" id="tab-xmix" aria-controls="panel-xmix" aria-selected="false" tabindex="-1">Customers &amp; products</button>
+              <button role="tab" id="tab-xauto" aria-controls="panel-xauto" aria-selected="false" tabindex="-1">Pivots &amp; macros</button>
+            </div>
+          </div>
+
+          <!-- Dashboard -->
+          <div class="panel" role="tabpanel" id="panel-xdash" aria-labelledby="tab-xdash">
+            <div class="panel-grid">
+              <figure class="chart-card span-2">
+                <figcaption>
+                  <h4>Monthly net sales, 2024 vs 2025</h4>
+                  <p>2025 ran ahead of 2024 in 10 of 12 months. December is the peak in both years.</p>
+                </figcaption>
+                <div class="chart" id="chart-xmonthly"></div>
+              </figure>
+              <div class="findings">
+                <p class="findings-label">Key findings</p>
+                <article><span class="tag tag-good">Growth</span><h5>Up 14% in a year</h5><p>Net sales rose from ₱302.4M in 2024 to ₱344.8M in 2025, and gross margin held at about 15%.</p></article>
+                <article><span class="tag tag-watch">Plan for it</span><h5>December carries the year</h5><p>December is the peak month for every category. It averages 1.60× a normal month.</p></article>
+                <article><span class="tag tag-watch">Plan for it</span><h5>Beverages lift in summer</h5><p>Beverage sales run 1.17× a normal month in March and 1.29× in April, so stock should build before the hot months.</p></article>
+              </div>
+            </div>
+            <figure class="shot"><a href="assets/excel/dashboard.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/dashboard.webp" alt="Excel Dashboard sheet: four filter dropdowns, eight KPI cards, a monthly 2024 vs 2025 line chart, net sales by category and by channel, and top 5 outlets and SKUs" loading="lazy" width="1600" height="1427"></a><figcaption>The Dashboard sheet. The yellow cells are dropdown filters.</figcaption></figure>
+          </div>
+
+          <!-- Sales team -->
+          <div class="panel" role="tabpanel" id="panel-xteam" aria-labelledby="tab-xteam" hidden>
+            <div class="panel-grid">
+              <figure class="chart-card span-2">
+                <figcaption>
+                  <h4>Attainment by salesman, 2025</h4>
+                  <p>Actual net sales ÷ target. Red bars are below 90%, where the commission rate drops to zero.</p>
+                </figcaption>
+                <div class="chart" id="chart-xattain"></div>
+              </figure>
+              <div class="findings">
+                <p class="findings-label">Key findings</p>
+                <article><span class="tag tag-critical">Act now</span><h5>Two newer reps need coaching</h5><p>SM-14 (hired 2024) reached 72.5% of target and missed in 11 of 12 months. SM-09 (also hired 2024) reached 76.6% and missed in 9.</p></article>
+                <article><span class="tag tag-watch">Watch</span><h5>The team is 5% short</h5><p>8 of 14 reps finished 2025 below target. As a team they delivered ₱344.8M against ₱363.5M, or 94.8%.</p></article>
+                <article><span class="tag tag-watch">Watch</span><h5>Commission follows the tiers</h5><p>₱3.47M in commission went to the reps at 90% or above. An approximate-match lookup sets each rep's rate.</p></article>
+              </div>
+            </div>
+            <figure class="shot"><a href="assets/excel/scorecard.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/scorecard.webp" alt="Excel Scorecard sheet: actual vs target per salesman with traffic-light icons, rank and commission tier, an attainment bar chart, and a month-by-month attainment heatmap" loading="lazy" width="2000" height="689"></a><figcaption>The Scorecard sheet, with a month-by-month heatmap below the table. Click any screenshot to open it full size.</figcaption></figure>
+            <figure class="shot"><a href="assets/excel/rep_report.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/rep_report.webp" alt="Excel Rep Report sheet for one salesman: KPI row, month-by-month actual vs target with icons, and category mix with data bars" loading="lazy" width="1600" height="888"></a><figcaption>The Rep Report sheet. One macro saves this page as a PDF for each of the 14 reps.</figcaption></figure>
+          </div>
+
+          <!-- Customers & products -->
+          <div class="panel" role="tabpanel" id="panel-xmix" aria-labelledby="tab-xmix" hidden>
+            <div class="panel-grid">
+              <figure class="chart-card span-2">
+                <figcaption>
+                  <h4>Share of outlets vs share of net sales, by channel</h4>
+                  <p>Net sales are for 2025. 41 wholesalers bring in more than half the revenue.</p>
+                </figcaption>
+                <div class="chart" id="chart-xchannel"></div>
+              </figure>
+              <div class="findings">
+                <p class="findings-label">Key findings</p>
+                <article><span class="tag tag-critical">Risk</span><h5>Revenue rests on a few wholesalers</h5><p>Grocery and wholesaler accounts are 16% of outlets but 56% of net sales. Losing one hurts more than losing dozens of sari-sari stores.</p></article>
+                <article><span class="tag tag-watch">Watch</span><h5>51 outlets are slipping away</h5><p>27 of 260 outlets haven't ordered in over 90 days, and 24 more are at risk (over 45 days).</p></article>
+                <article><span class="tag tag-watch">Watch</span><h5>Snacks come back twice as often</h5><p>Across both years, Snacks have a 3.0% return rate, against 1.4% for the company as a whole.</p></article>
+              </div>
+            </div>
+            <figure class="shot"><a href="assets/excel/analysis.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/analysis.webp" alt="Excel Analysis sheet: 24-month table with month-on-month, year-on-year and 3-month moving average, beside a line chart of net sales and the moving average" loading="lazy" width="1600" height="629"></a><figcaption>The Analysis sheet also has category, channel, seasonality and SKU Pareto (ABC) sections.</figcaption></figure>
+          </div>
+
+          <!-- Pivots & macros -->
+          <div class="panel" role="tabpanel" id="panel-xauto" aria-labelledby="tab-xauto" hidden>
+            <ul class="macros">
+              <li><h4>Refresh data</h4><p>Recalculates every formula, refreshes the pivot cache and stamps the time on the Dashboard.</p></li>
+              <li><h4>Export dashboard PDF</h4><p>Saves the Dashboard as a one-page PDF, with the active filters in the file name.</p></li>
+              <li><h4>Salesman PDF reports</h4><p>Loops through the 14 reps and saves a one-page report for each, ready to email.</p></li>
+              <li><h4>Import monthly file</h4><p>Cleans a messy CSV and appends it to the sales data: header names in any order, mixed date formats, peso signs, "5%" discounts, lower-case IDs. Lines it can't fix go to a log with the reason.</p></li>
+              <li><h4>Reset filters</h4><p>Puts the Dashboard back to the latest year with every other filter on All, and clears the slicers.</p></li>
+              <li><h4>One pivot cache</h4><p>Three PivotTables share one cache, so four slicers filter all of them at once and the file stays smaller.</p></li>
+            </ul>
+            <figure class="shot"><a href="assets/excel/pivots.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/pivots.webp" alt="Excel Pivots sheet: Year, Region, Channel and Category slicers above three PivotTables for category by region, month by channel, and salesman totals" loading="lazy" width="2000" height="694"></a><figcaption>The Pivots sheet. Each slicer sits over the tables it filters.</figcaption></figure>
+          </div>
+        </div>
+
+        <div class="recs">
+          <h3>What I'd tell the business</h3>
+          <ol>
+            <li><strong>Give the top wholesalers account plans.</strong> 41 outlets bring in 56% of net sales. A visit schedule and an early warning when one goes quiet protect more revenue than any other step.</li>
+            <li><strong>Coach SM-14 and SM-09 now.</strong> Both were hired in 2024 and finished at 72.5% and 76.6% of target. The heatmap shows a pattern across most months, not one bad month.</li>
+            <li><strong>Run a win-back list every month.</strong> 27 outlets are dormant and 24 are at risk. The Outlets sheet already flags them by days since their last order.</li>
+            <li><strong>Find out why Snacks come back.</strong> A 3.0% return rate is double the company average. Check expiry dates and the order sizes being pushed to small stores.</li>
+          </ol>
+        </div>
+
+        <div class="method">
+          <h3>Techniques on display</h3>
+          <ul class="chips">
+            <li>SUMIFS with wildcard filters</li><li>Dynamic named ranges</li><li>INDEX/MATCH (incl. 2-D)</li><li>Approximate-match commission tiers</li>
+            <li>Data validation dropdowns</li><li>Conditional formatting: color scales, data bars, icon sets</li><li>SKU Pareto / ABC</li><li>Seasonality index</li>
+            <li>PivotTables on a shared cache</li><li>Slicers</li><li>VBA: refresh, PDF export, report loop</li><li>VBA: CSV cleaning &amp; import log</li><li>Python data generation</li>
+          </ul>
+          <p class="note">Macros are optional. Windows blocks macros in downloaded files, so right-click the file, open Properties and tick <em>Unblock</em> to use the buttons. The formulas, charts and pivots work without macros.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ OTHER PROJECTS ============ -->
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
@@ -317,7 +454,7 @@
           <h2 id="skills-title">Skills</h2>
         </div>
         <div class="skill-groups">
-          <div class="skill-group"><h3>Analysis &amp; BI</h3><ul class="chips"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Excel (advanced)</li><li>PivotTables</li><li>Looker Studio</li></ul></div>
+          <div class="skill-group"><h3>Analysis &amp; BI</h3><ul class="chips"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Excel (advanced)</li><li>PivotTables</li><li>VBA</li><li>Looker Studio</li></ul></div>
           <div class="skill-group"><h3>Data &amp; code</h3><ul class="chips"><li>PostgreSQL / SQL</li><li>Python</li><li>Django</li><li>Firebase Realtime DB</li><li>C++</li><li>Java</li><li>PHP</li><li>MicroPython</li></ul></div>
           <div class="skill-group"><h3>Automation</h3><ul class="chips"><li>Power Apps</li><li>Power Automate</li><li>SharePoint</li></ul></div>
           <div class="skill-group"><h3>How I work</h3><ul class="chips"><li>Data cleaning &amp; validation</li><li>Dashboard storytelling</li><li>Root-cause analysis</li><li>Process improvement</li><li>Documentation</li></ul></div>
@@ -347,7 +484,7 @@
 
   <footer class="footer">
     <div class="wrap">
-      <p>© <span id="year">2026</span> Vicson Yaris. Case study data: <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank" rel="noopener">Olist public dataset (Kaggle)</a>. The charts on this page were rebuilt from the Power BI report.</p>
+      <p>© <span id="year">2026</span> Vicson Yaris. Case study data: <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank" rel="noopener">Olist public dataset (Kaggle)</a>. The charts on this page were rebuilt from the Power BI report. The Excel case study uses synthetic data.</p>
     </div>
   </footer>
 
