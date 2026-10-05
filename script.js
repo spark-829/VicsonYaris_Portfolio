@@ -400,6 +400,18 @@ window.addEventListener('resize', () => {
 });
 renderActive();
 
+/* Live Excel workbook: only load Excel for the web when asked (it's heavy) */
+const liveBtn = document.getElementById('live-load');
+if (liveBtn) liveBtn.addEventListener('click', () => {
+  const box = document.getElementById('live-frame');
+  const f = document.createElement('iframe');
+  f.src = box.dataset.src;
+  f.title = 'FMCG sales workbook running in Excel for the web';
+  f.setAttribute('allowfullscreen', '');
+  box.replaceChildren(f);
+  box.style.display = 'block';
+});
+
 /* Screenshots: hide the slot until a PNG exists in assets/dashboard/ */
 document.querySelectorAll('.shot img').forEach(img => {
   const fig = img.closest('figure');

@@ -240,7 +240,8 @@
           <h2 id="excel-title">Where a distributor's sales come from, and which reps need help</h2>
           <p class="section-lede">A sales and distribution workbook for a fictional FMCG distributor in Baguio that serves CAR, Regions I–III and NCR. It's built entirely in Excel: formulas, PivotTables, slicers and VBA. Pick a year, region, channel or category, and every KPI, chart and top-5 list updates.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="downloads/VicsonYaris_FMCG_Sales_Excel.xlsm" download>Download the workbook (.xlsm)</a>
+            <a class="btn btn-primary" href="#excel-live">Try the live workbook</a>
+            <a class="btn" href="downloads/VicsonYaris_FMCG_Sales_Excel.xlsm" download>Download the workbook (.xlsm)</a>
           </div>
           <p class="note">The data is <strong>synthetic</strong>. No real Philippine FMCG transaction data is public, so I generated 30,021 order lines with a Python script. The regions, provinces, cities and 2024–2025 holidays are real. The brands, outlets and people are made up.</p>
         </div>
@@ -343,6 +344,21 @@
               <li><h4>One pivot cache</h4><p>Three PivotTables share one cache, so four slicers filter all of them at once and the file stays smaller.</p></li>
             </ul>
             <figure class="shot"><a href="assets/excel/pivots.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/pivots.webp" alt="Excel Pivots sheet: Year, Region, Channel and Category slicers above three PivotTables for category by region, month by channel, and salesman totals" loading="lazy" width="2000" height="694"></a><figcaption>The Pivots sheet. Each slicer sits over the tables it filters.</figcaption></figure>
+          </div>
+        </div>
+
+        <div class="live" id="excel-live">
+          <div class="live-head">
+            <div>
+              <h3>Try the live workbook</h3>
+              <p>This is the real file running in Excel for the web. Change the Year, Region, Channel or Category dropdowns on the Dashboard, click the slicers on the Pivots sheet, or pick a rep on Rep_Report. Your changes aren't saved. The macro buttons only work in the downloaded <code>.xlsm</code>, because browsers can't run VBA.</p>
+            </div>
+            <a class="link" href="https://spark829-my.sharepoint.com/:x:/g/personal/spark_spark829_onmicrosoft_com/IQD-60JWd3q2TKkgg5jrhbYzAXm7EONO7hJEUKYFUZKuipM?e=N9AT6W" target="_blank" rel="noopener">Open full screen →</a>
+          </div>
+          <div class="live-frame" id="live-frame"
+               data-src="https://spark829-my.sharepoint.com/personal/spark_spark829_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc={5642ebfe-7a77-4cb6-a920-8398eb85b633}&amp;action=embedview&amp;AllowTyping=True&amp;wdAllowInteractivity=True&amp;ActiveCell=%27Dashboard%27!C5&amp;wdHideGridlines=True&amp;wdHideHeaders=True&amp;wdDownloadButton=True">
+            <button class="btn btn-primary" type="button" id="live-load">Load the live workbook</button>
+            <p class="live-hint">Opens Excel for the web inside this page (about 8 MB, no sign-in needed).</p>
           </div>
         </div>
 
