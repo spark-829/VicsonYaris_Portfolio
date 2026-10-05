@@ -240,7 +240,7 @@
           <h2 id="excel-title">Where a distributor's sales come from, and which reps need help</h2>
           <p class="section-lede">A sales and distribution workbook for a fictional FMCG distributor in Baguio that serves CAR, Regions I–III and NCR. It's built entirely in Excel: formulas, PivotTables, slicers and VBA. Pick a year, region, channel or category, and every KPI, chart and top-5 list updates.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="#excel-live">Try the live workbook</a>
+            <a class="btn btn-primary" href="#excel-viewer">Try the live workbook</a>
             <a class="btn" href="downloads/VicsonYaris_FMCG_Sales_Excel.xlsm" download>Download the workbook (.xlsm)</a>
           </div>
           <p class="note">The data is <strong>synthetic</strong>. No real Philippine FMCG transaction data is public, so I generated 30,021 order lines with a Python script. The regions, provinces, cities and 2024–2025 holidays are real. The brands, outlets and people are made up.</p>
@@ -261,7 +261,7 @@
           <li><span class="kpi-label">Team vs target</span><span class="kpi-val">94.8%</span></li>
         </ul>
 
-        <div class="report">
+        <div class="report" id="excel-viewer">
           <div class="report-bar">
             <p class="report-title"><span class="dot" aria-hidden="true"></span>Workbook sheets</p>
             <div class="tabs" role="tablist" aria-label="Workbook sheets">
@@ -289,7 +289,7 @@
                 <article><span class="tag tag-watch">Plan for it</span><h5>Beverages lift in summer</h5><p>Beverage sales run 1.17× a normal month in March and 1.29× in April, so stock should build before the hot months.</p></article>
               </div>
             </div>
-            <figure class="shot"><a href="assets/excel/dashboard.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/dashboard.webp" alt="Excel Dashboard sheet: four filter dropdowns, eight KPI cards, a monthly 2024 vs 2025 line chart, net sales by category and by channel, and top 5 outlets and SKUs" loading="lazy" width="1600" height="1427"></a><figcaption>The Dashboard sheet. The yellow cells are dropdown filters.</figcaption></figure>
+            <figure class="xl-live"><figcaption class="xl-live-bar"><span class="live-dot" aria-hidden="true"></span><b>Live workbook</b><span class="live-tag">Interactive · view-only</span><span class="live-hint">Change the yellow Year, Region, Channel and Category dropdowns, and every KPI, chart and top-5 list updates. Cells and formulas are locked, and nothing you change is saved.</span></figcaption><iframe src="https://spark829-my.sharepoint.com/personal/spark_spark829_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc={224a4009-eee6-470b-b991-fca49c55139d}&amp;action=embedview&amp;AllowTyping=True&amp;wdAllowInteractivity=True&amp;wdHideGridlines=True&amp;wdHideHeaders=True&amp;wdDownloadButton=True&amp;ActiveCell=%27Dashboard%27!C5" title="Dashboard sheet of the FMCG sales workbook, live in Excel for the web" loading="lazy"></iframe></figure>
           </div>
 
           <!-- Sales team -->
@@ -309,8 +309,7 @@
                 <article><span class="tag tag-watch">Watch</span><h5>Commission follows the tiers</h5><p>₱3.47M in commission went to the reps at 90% or above. An approximate-match lookup sets each rep's rate.</p></article>
               </div>
             </div>
-            <figure class="shot"><a href="assets/excel/scorecard.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/scorecard.webp" alt="Excel Scorecard sheet: actual vs target per salesman with traffic-light icons, rank and commission tier, an attainment bar chart, and a month-by-month attainment heatmap" loading="lazy" width="2000" height="689"></a><figcaption>The Scorecard sheet, with a month-by-month heatmap below the table. Click any screenshot to open it full size.</figcaption></figure>
-            <figure class="shot"><a href="assets/excel/rep_report.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/rep_report.webp" alt="Excel Rep Report sheet for one salesman: KPI row, month-by-month actual vs target with icons, and category mix with data bars" loading="lazy" width="1600" height="888"></a><figcaption>The Rep Report sheet. One macro saves this page as a PDF for each of the 14 reps.</figcaption></figure>
+            <figure class="xl-live"><figcaption class="xl-live-bar"><span class="live-dot" aria-hidden="true"></span><b>Live workbook</b><span class="live-tag">Interactive · view-only</span><span class="live-hint">Change the Year on the Scorecard, or open the Rep_Report sheet tab below and pick a rep in its yellow cell. Cells and formulas are locked, and nothing you change is saved.</span></figcaption><iframe src="https://spark829-my.sharepoint.com/personal/spark_spark829_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc={224a4009-eee6-470b-b991-fca49c55139d}&amp;action=embedview&amp;AllowTyping=True&amp;wdAllowInteractivity=True&amp;wdHideGridlines=True&amp;wdHideHeaders=True&amp;wdDownloadButton=True&amp;ActiveCell=%27Scorecard%27!C5" title="Scorecard sheet of the FMCG sales workbook, live in Excel for the web" loading="lazy"></iframe></figure>
           </div>
 
           <!-- Customers & products -->
@@ -330,7 +329,7 @@
                 <article><span class="tag tag-watch">Watch</span><h5>Snacks come back twice as often</h5><p>Across both years, Snacks have a 3.0% return rate, against 1.4% for the company as a whole.</p></article>
               </div>
             </div>
-            <figure class="shot"><a href="assets/excel/analysis.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/analysis.webp" alt="Excel Analysis sheet: 24-month table with month-on-month, year-on-year and 3-month moving average, beside a line chart of net sales and the moving average" loading="lazy" width="1600" height="629"></a><figcaption>The Analysis sheet also has category, channel, seasonality and SKU Pareto (ABC) sections.</figcaption></figure>
+            <figure class="xl-live"><figcaption class="xl-live-bar"><span class="live-dot" aria-hidden="true"></span><b>Live workbook</b><span class="live-tag">Interactive · view-only</span><span class="live-hint">Scroll for the category, channel, seasonality and SKU Pareto tables. Cells and formulas are locked, and nothing you change is saved.</span></figcaption><iframe src="https://spark829-my.sharepoint.com/personal/spark_spark829_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc={224a4009-eee6-470b-b991-fca49c55139d}&amp;action=embedview&amp;AllowTyping=True&amp;wdAllowInteractivity=True&amp;wdHideGridlines=True&amp;wdHideHeaders=True&amp;wdDownloadButton=True&amp;ActiveCell=%27Analysis%27!B2" title="Analysis sheet of the FMCG sales workbook, live in Excel for the web" loading="lazy"></iframe></figure>
           </div>
 
           <!-- Pivots & macros -->
@@ -343,22 +342,7 @@
               <li><h4>Reset filters</h4><p>Puts the Dashboard back to the latest year with every other filter on All, and clears the slicers.</p></li>
               <li><h4>One pivot cache</h4><p>Three PivotTables share one cache, so four slicers filter all of them at once and the file stays smaller.</p></li>
             </ul>
-            <figure class="shot"><a href="assets/excel/pivots.webp" target="_blank" rel="noopener" aria-label="Open full-size image"><img src="assets/excel/pivots.webp" alt="Excel Pivots sheet: Year, Region, Channel and Category slicers above three PivotTables for category by region, month by channel, and salesman totals" loading="lazy" width="2000" height="694"></a><figcaption>The Pivots sheet. Each slicer sits over the tables it filters.</figcaption></figure>
-          </div>
-        </div>
-
-        <div class="live" id="excel-live">
-          <div class="live-head">
-            <div>
-              <h3>Try the live workbook</h3>
-              <p>This is the real file running in Excel for the web. Change the Year, Region, Channel or Category dropdowns on the Dashboard, click the slicers on the Pivots sheet, or pick a rep on Rep_Report. Your changes aren't saved. The macro buttons only work in the downloaded <code>.xlsm</code>, because browsers can't run VBA.</p>
-            </div>
-            <a class="link" href="https://spark829-my.sharepoint.com/:x:/g/personal/spark_spark829_onmicrosoft_com/IQD-60JWd3q2TKkgg5jrhbYzAXm7EONO7hJEUKYFUZKuipM?e=N9AT6W" target="_blank" rel="noopener">Open full screen →</a>
-          </div>
-          <div class="live-frame" id="live-frame"
-               data-src="https://spark829-my.sharepoint.com/personal/spark_spark829_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc={5642ebfe-7a77-4cb6-a920-8398eb85b633}&amp;action=embedview&amp;AllowTyping=True&amp;wdAllowInteractivity=True&amp;ActiveCell=%27Dashboard%27!C5&amp;wdHideGridlines=True&amp;wdHideHeaders=True&amp;wdDownloadButton=True">
-            <button class="btn btn-primary" type="button" id="live-load">Load the live workbook</button>
-            <p class="live-hint">Opens Excel for the web inside this page (about 8 MB, no sign-in needed).</p>
+            <figure class="xl-live"><figcaption class="xl-live-bar"><span class="live-dot" aria-hidden="true"></span><b>Live workbook</b><span class="live-tag">Interactive · view-only</span><span class="live-hint">Click the slicers to filter all three PivotTables at once. Cells and formulas are locked, and nothing you change is saved.</span></figcaption><iframe src="https://spark829-my.sharepoint.com/personal/spark_spark829_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc={224a4009-eee6-470b-b991-fca49c55139d}&amp;action=embedview&amp;AllowTyping=True&amp;wdAllowInteractivity=True&amp;wdHideGridlines=True&amp;wdHideHeaders=True&amp;wdDownloadButton=True&amp;ActiveCell=%27Pivots%27!A1" title="Pivots sheet of the FMCG sales workbook, live in Excel for the web" loading="lazy"></iframe></figure>
           </div>
         </div>
 
