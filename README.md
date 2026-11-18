@@ -14,7 +14,7 @@ When the report changes, export the PDF again and regenerate the four PNGs. Any 
 
 ## The data pipeline case study
 
-A summary of the [ndn-social-pipeline](https://github.com/spark-829/ndn-social-pipeline) project: a daily ELT pipeline for a record label's public YouTube, TikTok and Instagram data (Python and Edge Functions, Supabase PostgreSQL, SQL staging and mart layers, Power BI and a first Tableau version). The figures in the Pipeline section of `index.html` (3,041 posts, 44 SQL scripts, 17 Edge Functions, 17 cron jobs, 242 DAX measures, 7 pages) come from the live project. When it changes, update them there.
+A summary of a daily ELT pipeline built for a Philippine record label (names removed): it collects the label's public YouTube, TikTok and Instagram data (Python and Edge Functions, Supabase PostgreSQL, SQL staging and mart layers, Power BI and a first Tableau version). The figures in the Pipeline section of `index.html` (3,041 posts, 44 SQL scripts, 17 Edge Functions, 17 cron jobs, 242 DAX measures, 7 pages) come from the live (private) project. When it changes, update them there.
 
 ## The Excel case study
 
