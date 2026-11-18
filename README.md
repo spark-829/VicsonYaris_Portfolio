@@ -12,6 +12,10 @@ The featured case study is a four-page Power BI report on the [Olist Brazilian E
 
 When the report changes, export the PDF again and regenerate the four PNGs. Any slot whose image is missing stays hidden.
 
+## The data pipeline case study
+
+A summary of the [ndn-social-pipeline](https://github.com/spark-829/ndn-social-pipeline) project: a daily ELT pipeline for a record label's public YouTube, TikTok and Instagram data (Python and Edge Functions, Supabase PostgreSQL, SQL staging and mart layers, Power BI). The figures in the Pipeline section of `index.html` (3,041 posts, 44 SQL scripts, 17 Edge Functions, 17 cron jobs, 242 DAX measures, 7 pages) come from the live project. When it changes, update them there.
+
 ## The Excel case study
 
 A sales and distribution workbook for a fictional FMCG distributor in North Luzon, built in Excel with formulas, PivotTables, slicers and VBA. The data is synthetic (generated with a Python script), and the site says so.

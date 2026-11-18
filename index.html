@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vicson Yaris · Data Analyst</title>
-  <meta name="description" content="Vicson Yaris — data analyst working in Power BI, DAX, Excel, SQL and Python. Featured: a four-page Power BI analysis of 99K Olist e-commerce orders, and an Excel sales and distribution workbook with PivotTables and VBA.">
+  <meta name="description" content="Vicson Yaris, data analyst working in Power BI, DAX, Excel, SQL and Python. Featured: a four-page Power BI analysis of 99K Olist e-commerce orders, an Excel sales workbook with PivotTables and VBA, and a daily social media data pipeline from API to Postgres to Power BI.">
   <link rel="stylesheet" href="style.css">
   <script>
     try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
@@ -20,6 +20,7 @@
         <ul class="nav-links" id="nav-links">
           <li><a href="#case-study">Power BI</a></li>
           <li><a href="#excel">Excel</a></li>
+          <li><a href="#pipeline">Pipeline</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#skills">Skills</a></li>
@@ -43,10 +44,11 @@
       <div class="hero-copy">
         <p class="eyebrow">Data Analyst · Baguio City, Philippines</p>
         <h1>I find the few numbers that actually move a business&nbsp;— and build the dashboard that makes them obvious.</h1>
-        <p class="lede">I'm Vicson Yaris, a Computer Engineering graduate and top-of-class Data Analytics Level&nbsp;III certificate holder. I work in Power BI, DAX, Excel, PostgreSQL and Python, and I've automated real reporting workflows in the Power Platform.</p>
+        <p class="lede">I'm Vicson Yaris, a Computer Engineering graduate and top-of-class Data Analytics Level&nbsp;III certificate holder. I work in Power BI, DAX, Excel, PostgreSQL and Python. I build the whole path from API to database to dashboard, and I've automated real reporting workflows in the Power Platform.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#case-study">See the featured dashboard</a>
           <a class="btn" href="#excel">See the Excel project</a>
+            <a class="btn" href="#pipeline">See the data pipeline</a>
           <a class="btn" href="https://www.linkedin.com/in/vicson-yaris-67a1b9160" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
@@ -368,6 +370,66 @@
       </div>
     </section>
 
+    <!-- ============ DATA PIPELINE CASE STUDY ============ -->
+    <section class="section" id="pipeline" aria-labelledby="pipeline-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Data engineering case study</p>
+          <h2 id="pipeline-title">A social media pipeline that runs every day without me</h2>
+          <p class="section-lede">Public APIs only give today's total, so history has to be saved by the day. I built an ELT pipeline for the YouTube, TikTok and Instagram accounts of a Baguio record label: extract with Python and Edge Functions, load raw JSON into Postgres, model it in SQL, and report it in Power BI. It has run daily since 12 October 2026.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/spark-829/ndn-social-pipeline" target="_blank" rel="noopener">See the code on GitHub</a>
+          </div>
+          <p class="note">This is an <strong>independent analysis of public data</strong>. It is not affiliated with the label, and nothing from private accounts is used.</p>
+        </div>
+
+        <div class="brief">
+          <div><h3>The question</h3><p>Which posts, songs and artists are gaining attention? How does a post compare with a normal post of the same age? Which artists are worth inviting to the next session?</p></div>
+          <div><h3>The data</h3><p>YouTube Data API, Instagram Graph API, TikTok, Spotify charts (kworb) and Deezer catalogs. 3,041 posts tracked, plus benchmark channels from the Philippines, Asia and the US.</p></div>
+          <div><h3>The build</h3><p>Raw JSON saved untouched with a snapshot date, SQL views from raw to staging to mart, and a seven-page Power BI report with a weighted score for ranking artists.</p></div>
+        </div>
+
+        <ul class="kpis" aria-label="Pipeline size">
+          <li><span class="kpi-label">Posts tracked</span><span class="kpi-val">3,041</span></li>
+          <li><span class="kpi-label">SQL scripts</span><span class="kpi-val">44</span></li>
+          <li><span class="kpi-label">Edge Functions</span><span class="kpi-val">17</span></li>
+          <li><span class="kpi-label">Scheduled jobs</span><span class="kpi-val">17</span></li>
+          <li><span class="kpi-label">DAX measures</span><span class="kpi-val">242</span></li>
+          <li><span class="kpi-label">Report pages</span><span class="kpi-val">7</span></li>
+        </ul>
+
+        <div class="project-grid">
+          <article class="project">
+            <p class="project-meta">Extract and load</p>
+            <h3>Many sources, one raw layer</h3>
+            <p>Python scripts and TypeScript Edge Functions call each API and save the response as JSONB with the run date. Raw rows are never edited, so a parser bug is fixed in a view and the data is read again.</p>
+            <ul class="chips small"><li>Python</li><li>yt-dlp</li><li>Playwright</li><li>Supabase</li><li>PostgreSQL</li></ul>
+          </article>
+          <article class="project">
+            <p class="project-meta">Transform</p>
+            <h3>Raw, staging, mart in SQL</h3>
+            <p>Title parsing into artist and song, dimension and daily fact tables, and post age curves, so a new post and an old one can be compared fairly. A labelled synthetic backfill sits in its own schema for testing.</p>
+            <ul class="chips small"><li>SQL views</li><li>CTEs</li><li>Window functions</li><li>Star schema</li></ul>
+          </article>
+          <article class="project">
+            <p class="project-meta">Schedule and quality</p>
+            <h3>Runs, checks itself, stays free</h3>
+            <p>pg_cron calls the Edge Functions and GitHub Actions run the rest. Offline tests, a script that audits every report visual, and a monthly trim keep the database at 257 MB of the 500 MB free limit.</p>
+            <ul class="chips small"><li>pg_cron</li><li>GitHub Actions</li><li>Deno tests</li><li>OAuth 2.0</li></ul>
+          </article>
+        </div>
+
+        <div class="method">
+          <h3>Also built</h3>
+          <ul class="chips">
+            <li>Power BI as a PBIP project (TMDL + PBIR)</li><li>14-day post tracker against usual growth at the same age</li><li>Weighted artist score</li><li>Fan song requests from comments</li>
+            <li>YouTube Analytics OAuth flow</li><li>REALS.PH listings pipeline (private): new, removed and repriced listings, pytest in CI</li>
+          </ul>
+          <p class="note">TikTok has no official data access for this account, so that part uses a scraper. It is paused while the official Display API connection waits for the account owner.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ OTHER PROJECTS ============ -->
     <section class="section" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
@@ -455,7 +517,7 @@
         </div>
         <div class="skill-groups">
           <div class="skill-group"><h3>Analysis &amp; BI</h3><ul class="chips"><li>Power BI</li><li>DAX</li><li>Power Query</li><li>Excel (advanced)</li><li>PivotTables</li><li>VBA</li><li>Looker Studio</li></ul></div>
-          <div class="skill-group"><h3>Data &amp; code</h3><ul class="chips"><li>PostgreSQL / SQL</li><li>Python</li><li>Django</li><li>Firebase Realtime DB</li><li>C++</li><li>Java</li><li>PHP</li><li>MicroPython</li></ul></div>
+          <div class="skill-group"><h3>Data &amp; code</h3><ul class="chips"><li>PostgreSQL / SQL</li><li>Supabase</li><li>pg_cron</li><li>REST APIs</li><li>TypeScript</li><li>GitHub Actions</li><li>Python</li><li>Next.js</li><li>Django</li><li>Firebase Realtime DB</li><li>C++</li><li>Java</li><li>PHP</li><li>MicroPython</li></ul></div>
           <div class="skill-group"><h3>Automation</h3><ul class="chips"><li>Power Apps</li><li>Power Automate</li><li>SharePoint</li></ul></div>
           <div class="skill-group"><h3>How I work</h3><ul class="chips"><li>Data cleaning &amp; validation</li><li>Dashboard storytelling</li><li>Root-cause analysis</li><li>Process improvement</li><li>Documentation</li></ul></div>
         </div>
@@ -484,7 +546,7 @@
 
   <footer class="footer">
     <div class="wrap">
-      <p>© <span id="year">2026</span> Vicson Yaris. Case study data: <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank" rel="noopener">Olist public dataset (Kaggle)</a>. The charts on this page were rebuilt from the Power BI report. The Excel case study uses synthetic data.</p>
+      <p>© <span id="year">2026</span> Vicson Yaris. Case study data: <a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank" rel="noopener">Olist public dataset (Kaggle)</a>. The charts on this page were rebuilt from the Power BI report. The Excel case study uses synthetic data. The pipeline case study uses public data and labels its synthetic test data.</p>
     </div>
   </footer>
 
